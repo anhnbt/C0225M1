@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 5: Form and Table</title>
+    <style>
+        label, input[type="text"], input[type="submit"] {
+            display: block;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+</head>
+<body>
+<!--<h1>Login</h1>-->
+<!--<form action="" method="post">-->
+<!--    <label for="username">Username</label>-->
+<!--    <input type="text" name="u" id="username">-->
+<!--    <label for="password">Password</label>-->
+<!--    <input type="password" name="p" id="password">-->
+<!--    <input type="submit" value="Login">-->
+<!--</form>-->
+<!--<h2>Youtube search</h2>-->
+<!--<form action="https://www.youtube.com/results">-->
+<!--    <input type="search" name="search_query" id="">-->
+<!--    <input type="submit" value="Tìm kiếm">-->
+<!--</form>-->
+<!--<h3>Thưởng điểm</h3>-->
+<!--<form action="">-->
+<!--    <label for="name">Họ và tên</label>-->
+<!--    <input type="text" name="name" id="name" value="Lê Đức Việt" readonly>-->
+<!--    <label for="score">Điểm</label>-->
+<!--    <input type="number" name="score" id="score">-->
+<!--    <input type="submit" value="Thưởng điểm">-->
+<!--</form>-->
+<h4>Điểm danh</h4>
+<form action="">
+    <label for="name">Họ và tên</label>
+    <input type="text" name="name" id="name">
+    <label>Trạng thái</label>
+    <label><input type="radio" name="status" checked> Có mặt</label>
+    <label><input type="radio" name="status"> Đi muộn</label>
+    <label><input type="radio" name="status"> Nghỉ phép</label>
+    <label><input type="radio" name="status"> Nghỉ</label>
+    <input type="submit" value="Điểm danh">
+    <label>Sở thích</label>
+    <label><input type="checkbox" name="hobby"> Đọc sách</label>
+    <label><input type="checkbox" name="hobby" checked> Nghe nhạc</label>
+    <label><input type="checkbox" name="hobby"> Xem phim</label>
+
+    <button type="button" onclick="banPhaoHoa()">Click me!</button>
+
+
+    <select name="" id="">
+        <option value="">Chọn ngôn ngữ</option>
+        <option value="VN">Việt Nam</option>
+        <option value="EN">English</option>
+    </select>
+    <label for="note">Ghi chú</label>
+    <textarea name="note" id="note" cols="30" rows="10"></textarea>
+</form>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Thời gian</th>
+        <th>Chủ đề</th>
+        <th>Ghi chú</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Thứ 2</td>
+        <td colspan="2">Git & HTML</td>
+    </tr>
+    <tr>
+        <td rowspan="2">Thứ 6</td>
+        <td>Form & Table</td>
+        <td>Phản tư</td>
+    </tr>
+    <tr>
+        <td>Tổng quan JavaScript</td>
+        <td>Học viên nộp báo cáo tuần</td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+    function banPhaoHoa() {
+        const duration = 15 * 1000,
+            animationEnd = Date.now() + duration,
+            defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        const interval = setInterval(function() {
+            const timeLeft = animationEnd - Date.now();
+
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
+
+            const particleCount = 50 * (timeLeft / duration);
+
+            // since particles fall down, start a bit higher than random
+            confetti(
+                Object.assign({}, defaults, {
+                    particleCount,
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+                })
+            );
+            confetti(
+                Object.assign({}, defaults, {
+                    particleCount,
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+                })
+            );
+        }, 250);
+    }
+</script>
+</body>
+</html>
